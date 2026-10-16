@@ -3,11 +3,12 @@ import { section, line, bullets, text } from '../content/copy';
 import { site, price, isUnset } from '../config/site';
 import CheckoutButton from './CheckoutButton.astro';
 import TodoBadge from './TodoBadge.astro';
+import RefundNotice from './RefundNotice.astro';
 interface Props { germany?: boolean }
 const { germany = false } = Astro.props;
 const product = germany ? 'germany' : 'canada';
 const copy = section(germany ? 'Offer box' : 'Section: Offer box (`id="offer"`)', germany);
 const items = bullets(copy.split('Price line:')[0]);
 ---
-<section id="offer" class="section offer-section" data-sticky-hide><div class="container"><div class="offer-box"><div class="offer-includes"><h2>{line(copy, 'H2')}</h2><p class="kicker">You get</p><ul class="check-list">{items.map(item => <li><span aria-hidden="true">✓</span>{item}</li>)}</ul></div><div class="offer-purchase"><p class="price">{price(product)}</p><TodoBadge value={site.prices[product]} /><CheckoutButton product={product} placement="offer" label={line(copy, 'CTA')} /><div class="offer-smallprint"><p>Secure checkout and instant delivery by Selar.</p><p>{site.refundPolicy}</p><TodoBadge value={site.refundPolicy} /><p>General information, not legal or immigration advice.{!germany && <> <a href={site.routes.disclaimer}>See the disclaimer.</a></>}</p></div>
+<section id="offer" class="section offer-section" data-sticky-hide><div class="container"><div class="offer-box"><div class="offer-includes"><h2>{line(copy, 'H2')}</h2><p class="kicker">You get</p><ul class="check-list">{items.map(item => <li><span aria-hidden="true">✓</span>{item}</li>)}</ul></div><div class="offer-purchase"><p class="price">{price(product)}</p><TodoBadge value={site.prices[product]} /><CheckoutButton product={product} placement="offer" label={line(copy, 'CTA')} /><div class="offer-smallprint"><p>Secure checkout and instant delivery by Selar.</p><RefundNotice /><p>General information, not legal or immigration advice.{!germany && <> <a href={site.routes.disclaimer}>See the disclaimer.</a></>}</p></div>
 {!isUnset(site.prices.bundle) && !isUnset(site.selar.bundle) && <CheckoutButton product="bundle" placement="offer" secondary label={text('Want both guides? Get Canada + Germany for {{prices.bundle}} →')} />}</div></div></div></section>

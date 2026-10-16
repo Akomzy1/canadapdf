@@ -1,6 +1,14 @@
 ---
 import Legal from '../layouts/Legal.astro';
-import { site, contactUrl } from '../config/site';
-import TodoBadge from '../components/TodoBadge.astro';
+import { site } from '../config/site';
 ---
-<Legal title="Refunds"><p>{site.refundPolicy}</p><TodoBadge value={site.refundPolicy} /><h2>How to request a refund</h2><p>Email <a href={contactUrl}>{site.contactEmail}</a> with your Selar order reference.</p><TodoBadge value={site.contactEmail} /></Legal>
+<Legal title="Refund policy" updatedOn={site.refundPolicyUpdatedOn}>
+  <p>{site.refundPolicy}</p>
+  <h2>Download problems</h2>
+  <p>If a file won't open or download, or you received the wrong file, contact us using the details on your Selar receipt, quoting your order number. We'll fix it or send it again within 2 working days.</p>
+  <h2>Before you buy</h2>
+  <p>Please read the product description and the "Look inside" sample pages so you know exactly what's included.</p>
+  <h2>Please note</h2>
+  <p>The guides are general information. We can't offer refunds because of an immigration decision, and no guide can promise a visa or any outcome.</p>
+  <p>{site.refundRights}</p>
+</Legal>

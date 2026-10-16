@@ -1,7 +1,7 @@
 ---
 import Base from './Base.astro';
 import { site } from '../config/site';
-interface Props { title: string; noindex?: boolean }
-const { title, noindex = false } = Astro.props;
+interface Props { title: string; noindex?: boolean; updatedOn?: string }
+const { title, noindex = false, updatedOn = site.figuresCheckedOn } = Astro.props;
 ---
-<Base title={`${title} | ${site.brand}`} description={`${title} for ${site.brand}.`} noindex={noindex}><header class="legal-header" slot="hero"><div class="container masthead-inner"><a class="wordmark" href={site.routes.home}>{site.brand}</a></div></header><article class="section container legal-content"><h1>{title}</h1>{!noindex && <p class="small">Last updated: {site.figuresCheckedOn}</p>}<slot /></article></Base>
+<Base title={`${title} | ${site.brand}`} description={`${title} for ${site.brand}.`} noindex={noindex}><header class="legal-header" slot="hero"><div class="container masthead-inner"><a class="wordmark" href={site.routes.home}>{site.brand}</a></div></header><article class="section container legal-content"><h1>{title}</h1>{!noindex && <p class="small">Last updated: {updatedOn}</p>}<slot /></article></Base>

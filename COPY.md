@@ -354,6 +354,24 @@ Meta description: The Opportunity Card points system, EU Blue Card, skilled-work
 
 **Terms (`/terms`)**: digital product; one-buyer personal licence; no resale, sharing or redistribution; content is general information, not advice; no guarantee of any immigration outcome; figures dated and may change; governing law: TODO (owner to choose).
 
-**Refunds (`/refunds`)**: {{refundPolicy}}; how to request (email {{contactEmail}} with your Selar order reference).
+**Refunds (`/refunds`)**: Use the owner-approved Refund policy below verbatim. Its last-updated date comes from `site.refundPolicyUpdatedOn`. Offer boxes show `{{refundPolicy}}`, `{{refundRights}}` and a link labelled "Refund policy".
 
 **Disclaimer (`/disclaimer`)**: full version of the footer disclaimer, plus: "Under section 91 of Canada's Immigration and Refugee Protection Act, only lawyers and Quebec notaries in good standing, paralegals licensed by a Canadian law society, and members of the College of Immigration and Citizenship Consultants may give paid advice or representation on an immigration application. Japa Right is none of these and does not represent readers."
+
+### Refund policy
+
+Japa Right guides are digital products delivered instantly after payment. Because they can't be returned once downloaded, all sales are final and we don't offer refunds or exchanges.
+
+#### Download problems
+
+If a file won't open or download, or you received the wrong file, contact us using the details on your Selar receipt, quoting your order number. We'll fix it or send it again within 2 working days.
+
+#### Before you buy
+
+Please read the product description and the "Look inside" sample pages so you know exactly what's included.
+
+#### Please note
+
+The guides are general information. We can't offer refunds because of an immigration decision, and no guide can promise a visa or any outcome.
+
+This doesn't affect your rights under applicable consumer protection law.

@@ -1,0 +1,12 @@
+---
+import { site } from '../config/site';
+---
+<div class="small refund-notice">
+  <p>{site.refundPolicy}</p>
+  <p>{site.refundRights} <a href={site.routes.refunds}>Refund policy</a></p>
+</div>
+<style>
+  .refund-notice { margin-block: 12px; }
+  .refund-notice p + p { margin-top: 8px; }
+  a { display: inline-flex; align-items: center; min-height: 44px; }
+</style>

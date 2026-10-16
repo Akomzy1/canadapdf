@@ -32,14 +32,17 @@ Set these fields in `src/config/site.ts`:
 - `domain`
 - `contactEmail`
 - `prices.canada`, `prices.germany`
-- `selar.canada`, `selar.germany`
-- `refundPolicy`
+- `selar.germany`
 - `governingLaw`
 - `PUBLIC_META_PIXEL_ID` in the host environment, if tracking is wanted
 
 `prices.bundle` and `selar.bundle` intentionally default to `null`. Set both to show the optional offer. Testimonials remain empty until genuine, permissioned entries are supplied.
 
-An unset price displays “See price at checkout”. An unset checkout URL points to `#offer` for Canada or `#germany-offer` for Germany. Development also shows red TODO badges. Refund, email and governing-law placeholders stay visible so that incomplete legal terms cannot look final. Build warnings list all unset launch fields. Canonical URLs and sitemap generation activate only when the domain is real; `robots.txt` is generated from the same configuration. Do not run paid ads before the commercial and legal settings are filled in and reviewed.
+An unset price displays “See price at checkout”. An unset checkout URL points to `#offer` for Canada or `#germany-offer` for Germany. Development also shows red TODO badges. Email and governing-law placeholders stay visible so that incomplete legal terms cannot look final. Build warnings list all unset launch fields. Canonical URLs and sitemap generation activate only when the domain is real; `robots.txt` is generated from the same configuration. Do not run paid ads before the commercial and legal settings are filled in and reviewed.
+
+The owner-supplied refund policy was added on 17 October 2026. `/refunds` contains the full wording, including support through the Selar receipt, the two-working-day file-resolution commitment and the consumer-rights qualification. Both purchase offers show the policy introduction and consumer-rights qualification with a link to the full policy.
+
+The Canada checkout is configured as `https://selar.com/1h92g1w281`. Its display price remains unset until the matching Selar price is supplied or verified.
 
 Consent is stored as `{ choice: 'granted' | 'denied', timestamp: number }` under `jr-consent`. Storage failure means denied. Meta is never contacted before consent or with an empty Pixel ID. Cookie settings reopens the choice; withdrawal revokes the Pixel and reloads the page. Purchase and InitiateCheckout events belong to Selar and are not fired here.
 

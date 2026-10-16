@@ -4,8 +4,10 @@ export const site = {
   contactEmail: 'TODO: hello@japaright.com',
   figuresCheckedOn: '16 October 2026',
   prices: { canada: 'TODO', germany: 'TODO', bundle: null as string | null },
-  selar: { canada: 'TODO: https://selar.com/xxxx', germany: 'TODO: https://selar.com/xxxx', bundle: null as string | null },
-  refundPolicy: 'TODO: Set the refund policy before launch.',
+  selar: { canada: 'https://selar.com/1h92g1w281', germany: 'TODO: https://selar.com/xxxx', bundle: null as string | null },
+  refundPolicy: "Japa Right guides are digital products delivered instantly after payment. Because they can't be returned once downloaded, all sales are final and we don't offer refunds or exchanges.",
+  refundRights: "This doesn't affect your rights under applicable consumer protection law.",
+  refundPolicyUpdatedOn: '17 October 2026',
   governingLaw: 'TODO: Owner to choose the governing law.',
   metaPixelId: import.meta.env?.PUBLIC_META_PIXEL_ID ?? '', // TODO: Set PUBLIC_META_PIXEL_ID in the host environment.
   testimonials: [] as { name: string; city: string; text: string }[],
