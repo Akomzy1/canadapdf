@@ -1,0 +1,6 @@
+---
+import { section, line } from '../content/copy';
+const copy = section('Section: The honest part');
+const paragraphs = copy.split('Body (3 short paragraphs):')[1].trim().split('\n\n');
+---
+<section class="section honesty"><div class="container honesty-grid"><div><p class="kicker">{line(copy, 'Kicker')}</p><h2>{line(copy, 'H2')}</h2></div><div>{paragraphs.map(paragraph => <p>{paragraph}</p>)}</div></div></section>

@@ -1,0 +1,25 @@
+---
+import '../styles/global.css';
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-600.css';
+import '@fontsource/inter/latin-700.css';
+import '@fontsource/playfair-display/latin-700.css';
+import displayFont from '@fontsource/playfair-display/files/playfair-display-latin-700-normal.woff2?url';
+import { getImage } from 'astro:assets';
+import canadaCover from '../assets/images/covers/cover-canada.webp';
+import { site, domain, isUnset } from '../config/site';
+import Footer from '../components/Footer.astro';
+import ConsentBanner from '../components/ConsentBanner.astro';
+import PreviewLightbox from '../components/PreviewLightbox.astro';
+interface Props { title: string; description: string; product?: 'canada' | 'germany'; noindex?: boolean }
+const { title, description, product, noindex = false } = Astro.props;
+const heroPreload = product === 'canada' ? await getImage({ src: canadaCover, format: 'avif', width: 440, height: 628, widths: [240, 360, 440, 660, 880] }) : undefined;
+const canonical = domain ? new URL(Astro.url.pathname, domain).href : undefined;
+const ogImage = domain ? new URL(site.assets.og, domain).href : site.assets.og;
+const rawPrice = product ? site.prices[product] : null;
+const numericPrice = rawPrice && !isUnset(rawPrice) ? Number(rawPrice.replace(/[^\d.]/g, '')) : NaN;
+const schema = product ? { '@context': 'https://schema.org', '@type': 'Product', name: `${site.brand}: ${product === 'canada' ? 'Canada' : 'Germany'} ${site.dates.edition}`, description, image: ogImage,
+  ...(Number.isFinite(numericPrice) && numericPrice > 0 ? { offers: { '@type': 'Offer', priceCurrency: 'NGN', price: numericPrice, ...(!isUnset(site.selar[product]) ? { url: site.selar[product] } : {}) } } : {}) } : null;
+---
+<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>{title}</title><meta name="description" content={description} /><meta name="theme-color" content={product === 'germany' ? '#121417' : '#7E140C'} /><link rel="icon" type="image/svg+xml" href={site.assets.favicon} />{heroPreload && <link rel="preload" as="image" type="image/avif" href={heroPreload.src} imagesrcset={heroPreload.srcSet.attribute} imagesizes="(min-width: 768px) 380px, 62vw" fetchpriority="high" />}<link rel="preload" as="font" href={displayFont} type="font/woff2" crossorigin />{canonical && <link rel="canonical" href={canonical} />}{noindex && <meta name="robots" content="noindex" />}<meta property="og:type" content="website" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:image" content={ogImage} /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content={site.brand} />{canonical && <meta property="og:url" content={canonical} />}<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={ogImage} />{schema && <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />}</head>
+<body class:list={[{ 'germany-theme': product === 'germany' }]} data-product={product} data-pixel-id={site.metaPixelId} data-pixel-src={site.tracking.script}><a class="skip-link" href={site.routes.main}>{site.ui.skip}</a><main id="main" tabindex="-1"><slot name="hero" /><slot /></main><Footer /><ConsentBanner /><PreviewLightbox /><script>import '../scripts/site';</script></body></html>

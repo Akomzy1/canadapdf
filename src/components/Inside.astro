@@ -1,0 +1,9 @@
+---
+import { section, line, numbered } from '../content/copy';
+interface Props { germany?: boolean }
+const { germany = false } = Astro.props;
+const copy = section("Section: What's inside", germany);
+---
+<section id="inside" class="section cream"><div class="container"><div class="section-heading"><p class="kicker">{line(copy, 'Kicker')}</p><h2>{line(copy, 'H2')}</h2></div>
+<ol class="inside-grid">{numbered(copy).map((item, index) => <li><span class="chapter-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.description}</p></div></li>)}</ol>
+<p class="appendices">{line(copy, 'Appendices line')}</p></div></section>

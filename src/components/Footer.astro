@@ -1,0 +1,6 @@
+---
+import { section, line, disclaimer } from '../content/copy';
+import { site, contactUrl } from '../config/site';
+import TodoBadge from './TodoBadge.astro';
+---
+<footer class="footer" data-sticky-hide><div class="container"><div class="footer-top"><a class="wordmark" href={site.routes.home}>{site.brand}</a><nav aria-label="Footer"><a href={site.routes.germany} data-companion>Japa Right: Germany</a>{(['privacy', 'terms', 'refunds', 'disclaimer'] as const).map(route => <a href={site.routes[route]}>{route[0].toUpperCase() + route.slice(1)}</a>)}<button type="button" data-cookie-settings>Cookie settings</button>{contactUrl ? <a href={contactUrl}>Contact ({site.contactEmail})</a> : <span class="contact-placeholder">Contact ({site.contactEmail})<TodoBadge value={site.contactEmail} /></span>}</nav></div><p class="footer-disclaimer">{disclaimer}</p><p class="copyright">{line(section('Footer'), '© line')}</p></div></footer>

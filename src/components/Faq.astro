@@ -1,0 +1,7 @@
+---
+import { canadaFaq, germanyFaq } from '../content/faq';
+import { section, line } from '../content/copy';
+interface Props { germany?: boolean }
+const { germany = false } = Astro.props;
+---
+<section class="section cream"><div class="container faq-grid"><h2>{line(section('Section: FAQ'), 'H2')}</h2><div class="faq-items">{(germany ? germanyFaq : canadaFaq).map((item, index) => <details open={index === 0}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div></div></section>

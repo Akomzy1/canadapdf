@@ -1,0 +1,6 @@
+---
+import { site, isUnset } from '../config/site';
+interface Props { value?: string | null }
+const { value } = Astro.props;
+---
+{import.meta.env.DEV && isUnset(value) && <small class="todo-badge">{site.ui.todoBadge}</small>}

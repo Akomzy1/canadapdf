@@ -1,0 +1,6 @@
+---
+import { section, line } from '../content/copy';
+import CheckoutButton from './CheckoutButton.astro';
+const copy = section('Sticky mobile CTA');
+---
+<aside class="sticky-cta" hidden aria-label="Japa Right: Canada"><p>{line(copy, 'Text')}</p><CheckoutButton placement="sticky" label={line(copy, 'Button')} /></aside>

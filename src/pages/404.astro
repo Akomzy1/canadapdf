@@ -1,0 +1,5 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { site } from '../config/site';
+---
+<Legal title={site.ui.notFound} noindex><p>{site.ui.notFoundBody}</p><a class="button" href={site.routes.home}>{site.ui.home}</a></Legal>

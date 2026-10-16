@@ -1,0 +1,6 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { site } from '../config/site';
+import TodoBadge from '../components/TodoBadge.astro';
+---
+<Legal title="Terms"><h2>Your purchase and licence</h2><p>Japa Right guides are digital products delivered through Selar. Each purchase gives one buyer a personal licence to use the files. Resale, sharing and redistribution are not permitted.</p><h2>General information</h2><p>The guides provide general information, not legal or immigration advice. They do not assess individual cases or promise any immigration outcome. Figures are dated and requirements may change. Confirm current requirements on official government websites before applying or paying fees.</p><h2>Refunds</h2><p><a href={site.routes.refunds}>Refunds</a> are governed by the published refund policy.</p><h2>Governing law</h2><p>{site.governingLaw}</p><TodoBadge value={site.governingLaw} /></Legal>

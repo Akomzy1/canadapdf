@@ -1,0 +1,12 @@
+---
+import { Picture } from 'astro:assets';
+import canada from '../assets/images/covers/cover-canada.webp';
+import germany from '../assets/images/covers/cover-germany.webp';
+import resume from '../assets/images/covers/cover-resume.webp';
+import { text } from '../content/copy';
+interface Props { book: 'canada' | 'germany' | 'resume'; hero?: boolean; class?: string; alt?: string }
+const { book, hero = false, class: className = '', alt } = Astro.props;
+const covers = { canada, germany, resume };
+const alts = { canada: 'Japa Right: Canada 2026/27 ebook cover', germany: 'Japa Right: Germany 2026/27 ebook cover', resume: 'The Canadian Resume Kit cover' };
+---
+<Picture src={covers[book]} formats={['avif', 'webp']} fallbackFormat="webp" width={440} height={628} widths={[240, 360, 440, 660, 880]} sizes={hero ? '(min-width: 768px) 380px, 62vw' : '(min-width: 768px) 300px, 62vw'} alt={text(alt ?? alts[book])} loading={hero ? 'eager' : 'lazy'} fetchpriority={hero ? 'high' : 'auto'} class:list={['book-cover', className]} />

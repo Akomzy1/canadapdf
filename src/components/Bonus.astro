@@ -1,0 +1,7 @@
+---
+import { section, line, bullets, rich } from '../content/copy';
+import BookCover from './BookCover.astro';
+import LookInside from './LookInside.astro';
+const copy = section('Section: Free bonus');
+---
+<section id="bonus" class="section bonus"><div class="container"><div class="bonus-heading"><p class="kicker">{line(copy, 'Kicker')}</p><h2>{line(copy, 'H2')}</h2><p>{line(copy, 'Body')}</p></div><div class="bonus-layout"><div class="bonus-art"><BookCover book="resume" /><p class="bonus-included">{line(copy, 'Footnote')}</p></div><div class="bonus-resources"><ul class="bonus-grid">{bullets(copy).map((item, index) => <li><span class="resource-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><span set:html={rich(item)} /></li>)}</ul><LookInside bonus /></div></div></div></section>

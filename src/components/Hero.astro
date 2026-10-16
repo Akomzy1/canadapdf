@@ -1,0 +1,15 @@
+---
+import { section, line, bullets, rich, text } from '../content/copy';
+import { site } from '../config/site';
+import CheckoutButton from './CheckoutButton.astro';
+import BookCover from './BookCover.astro';
+const copy = section('Hero');
+const headline = line(copy, 'H1').split('. ');
+---
+<div class="announcement">{text(section('Announcement bar'))}</div>
+<header class="masthead"><div class="container masthead-inner"><a class="wordmark" href={site.routes.home}>{site.brand}<span class="brand-dot" aria-hidden="true"></span></a><nav class="header-nav" aria-label="Guide sections"><a href={site.routes.inside}>What's inside</a><a href={site.routes.previews}>Look inside</a><a href={site.routes.bonus}>The Canadian Resume Kit</a></nav><span class="edition">{site.dates.edition}</span></div></header>
+<section class="hero" aria-labelledby="hero-heading"><div class="container hero-grid">
+  <div class="hero-copy"><p class="kicker">{line(copy, 'Kicker')}</p><h1 id="hero-heading"><span>{headline[0]}.</span> {headline.slice(1).join('. ')}</h1><p class="hero-subtitle" set:html={rich(line(copy, 'Sub-headline'))} /><div class="hero-actions"><CheckoutButton id="hero-checkout" placement="hero" label={line(copy, 'Primary CTA')} /><a class="text-link" href={site.routes.inside}>{line(copy, 'Secondary link')}</a></div></div>
+  <div class="hero-art"><div class="book-stage" aria-hidden="true"></div><div class="main-cover"><BookCover book="canada" hero /></div><div class="companion-cover"><BookCover book="resume" alt="Bonus: The Canadian Resume Kit cover" /><span class="bonus-seal">{line(section('Section: Free bonus'), 'Kicker')}</span></div></div>
+  <ul class="trust-chips" aria-label="Guide details">{bullets(copy).map(chip => <li><span class="trust-check" aria-hidden="true">✓</span>{chip}</li>)}</ul>
+</div></section>

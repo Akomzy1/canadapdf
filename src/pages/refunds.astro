@@ -1,0 +1,6 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { site, contactUrl } from '../config/site';
+import TodoBadge from '../components/TodoBadge.astro';
+---
+<Legal title="Refunds"><p>{site.refundPolicy}</p><TodoBadge value={site.refundPolicy} /><h2>How to request a refund</h2><p>Email <a href={contactUrl}>{site.contactEmail}</a> with your Selar order reference.</p><TodoBadge value={site.contactEmail} /></Legal>

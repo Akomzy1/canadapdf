@@ -1,0 +1,8 @@
+---
+import { checkoutUrl, site, type Product } from '../config/site';
+import TodoBadge from './TodoBadge.astro';
+interface Props { product?: Product; placement: 'hero' | 'offer' | 'sticky' | 'final' | 'planb'; label: string; id?: string; secondary?: boolean }
+const { product = 'canada', placement, label, id, secondary = false } = Astro.props;
+---
+<a id={id} href={checkoutUrl(product)} class:list={['button', { 'button-secondary': secondary }]} rel="noopener" data-checkout data-product={product} data-placement={placement} data-checkout-url={checkoutUrl(product)}>{label}<span class="button-arrow" aria-hidden="true">↗</span></a>
+<TodoBadge value={site.selar[product]} />

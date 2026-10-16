@@ -1,0 +1,33 @@
+---
+import { site } from '../config/site';
+---
+
+{site.testimonials.length > 0 && (
+  <section class="section testimonials" aria-label="Testimonials">
+    <div class="container testimonial-grid">
+      {site.testimonials.map(item => (
+        <figure class="testimonial-card">
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <blockquote><p>{item.text}</p></blockquote>
+          <figcaption>
+            <span class="reader-name">{item.name}</span>
+            {item.city && <span class="reader-city">{item.city}</span>}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .testimonials { background: var(--color-cream); border-top: 1px solid var(--color-line); }
+  .testimonial-grid { display: grid; gap: 20px; }
+  .testimonial-card { display: flex; flex-direction: column; min-width: 0; padding: 28px; border: 1px solid var(--color-line); border-top: 2px solid var(--color-gold); border-radius: 14px; background: var(--color-paper); }
+  .quote-mark { color: var(--color-canada-deep); font: 700 64px/1 var(--font-display); height: 50px; }
+  blockquote { margin: 0 0 28px; overflow-wrap: anywhere; }
+  blockquote p { font: 700 21px/1.55 var(--font-display); white-space: pre-line; }
+  figcaption { display: grid; gap: 4px; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--color-line); overflow-wrap: anywhere; }
+  .reader-name { font-size: 14px; font-weight: 600; }
+  .reader-city { color: var(--color-muted); font-size: 13px; }
+  @media (min-width: 768px) { .testimonial-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+</style>

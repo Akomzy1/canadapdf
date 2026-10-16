@@ -1,0 +1,23 @@
+---
+import { Picture, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { section, line, text } from '../content/copy';
+interface Props { germany?: boolean; bonus?: boolean; compact?: boolean }
+const { germany = false, bonus = false, compact = false } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/images/previews/*.webp', { eager: true });
+const copy = section('Section: Look inside');
+const names = bonus ? ['resume-makeover', 'resume-reference-letter'] : germany ? ['germany-decision-map', 'germany-points-table'] : ['canada-pathway-finder', 'canada-decision-map', 'canada-what-is-open', 'canada-crs-tables', 'canada-60-day-chain', 'canada-master-checklist'];
+const captions = bonus ? ['before-and-after resume makeover', 'Express Entry reference-letter template'] : germany ? ['the Germany Pathway Finder decision map', 'the Opportunity Card points table'] : ['Pathway Finder', 'Decision map', "What's open in 2026", 'CRS tables', 'The 60-day chain', 'Master checklist'];
+const descriptions = bonus || germany ? captions : ['the 12-question Pathway Finder worksheet', 'the decision map that sends you to your best route', 'what is open to applicants in Nigeria in 2026', 'Express Entry CRS points tables', 'the 60-day plan after an invitation to apply', 'the master checklist'];
+const previews = await Promise.all(names.map(async (name, index) => {
+  const src = images[`../assets/images/previews/${name}.webp`].default;
+  const full = await getImage({ src, width: 910, format: 'webp', quality: 90 });
+  return { src, full, name, caption: text(captions[index]), alt: text(`Sample page: ${descriptions[index]}`) };
+}));
+---
+<section id={!bonus && !germany ? 'look-inside' : undefined} class:list={[bonus ? 'bonus-previews' : compact ? 'compact-previews' : 'section', { 'preview-section': !bonus && !compact }]} aria-label={line(copy, 'H2')}>
+<div class:list={[{ container: !bonus && !compact }]}>
+{!bonus && !compact && <div class="section-heading"><p class="kicker">{line(copy, 'Kicker')}</p><h2>{line(copy, 'H2')}</h2><p>{line(copy, 'Helper text')}</p></div>}
+<div class:list={['preview-strip', { 'preview-pair': germany || bonus }]}>
+{previews.map(preview => <figure><a href={preview.full.src} data-preview data-name={preview.name} data-alt={preview.alt} aria-label={preview.alt}><Picture src={preview.src} formats={['avif', 'webp']} fallbackFormat="webp" width={300} height={429} widths={[240, 360, 600]} sizes={bonus ? '150px' : '(min-width: 768px) 340px, 72vw'} loading="lazy" alt={preview.alt} /><span class="preview-zoom" aria-hidden="true">↗</span></a>{!bonus && <figcaption>{preview.caption}</figcaption>}</figure>)}
+</div></div></section>

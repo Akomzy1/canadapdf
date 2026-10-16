@@ -1,0 +1,7 @@
+---
+import { section, line } from '../content/copy';
+const copy = section('Section: The method');
+const steps = copy.split(/Step \d\n/).slice(1).map(block => block.replace(/^- /gm, ''));
+---
+<section class="section"><div class="container"><div class="section-heading"><p class="kicker">{line(copy, 'Kicker')}</p><h2>{line(copy, 'H2')}</h2></div>
+<div class="three-grid method-grid">{steps.map(step => <article><span class="step-number">{line(step, 'Number')}</span><h3>{line(step, 'Title')}</h3><p>{line(step, 'Body')}</p></article>)}</div></div></section>

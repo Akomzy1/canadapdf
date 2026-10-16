@@ -1,0 +1,10 @@
+---
+import { section, line, rich } from '../content/copy';
+const copy = section('Section: Most Canada guides are out of date');
+const cards = copy.split(/Card \d\n/).slice(1).map(block => block.replace(/^- /gm, ''));
+---
+<section class="section cream"><div class="container">
+  <div class="section-heading"><p class="kicker">{line(copy, 'Kicker')}</p><h2>{line(copy, 'H2')}</h2><p>{line(copy, 'Intro')}</p></div>
+  <div class="three-grid dead-grid">{cards.map(card => <article class="dead-card"><p class="date-label">{line(card, 'Label')}</p><h3>{line(card, 'Title')}</h3><p>{line(card, 'Body')}</p></article>)}</div>
+  <p class="section-note" set:html={rich(line(copy, 'Closing line'))} />
+</div></section>

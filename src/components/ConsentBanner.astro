@@ -1,0 +1,4 @@
+---
+import { site } from '../config/site';
+---
+<aside class="consent-banner" hidden aria-label="Cookie settings"><p>{site.ui.consent} <a href={site.routes.privacy}>Privacy</a></p><div class="consent-actions"><button type="button" data-consent="granted">{site.ui.accept}</button><button type="button" data-consent="denied">{site.ui.decline}</button></div></aside>

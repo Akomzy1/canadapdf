@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import DeadRoutes from '../components/DeadRoutes.astro';
+import Method from '../components/Method.astro';
+import Inside from '../components/Inside.astro';
+import LookInside from '../components/LookInside.astro';
+import WhoFor from '../components/WhoFor.astro';
+import Bonus from '../components/Bonus.astro';
+import PlanB from '../components/PlanB.astro';
+import Offer from '../components/Offer.astro';
+import Honesty from '../components/Honesty.astro';
+import Faq from '../components/Faq.astro';
+import FinalCta from '../components/FinalCta.astro';
+import StickyCta from '../components/StickyCta.astro';
+import Testimonials from '../components/Testimonials.astro';
+import { section, line } from '../content/copy';
+const seo = section('SEO');
+---
+<Base title={line(seo, 'Title')} description={line(seo, 'Meta description')} product="canada"><Hero slot="hero" /><DeadRoutes /><Method /><Inside /><LookInside /><WhoFor /><Bonus /><Offer /><PlanB /><Honesty /><Testimonials /><Faq /><FinalCta /><StickyCta /></Base>

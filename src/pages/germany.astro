@@ -1,0 +1,8 @@
+---
+import { site, domain } from '../config/site';
+const destination = site.routes.germany;
+---
+<!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>{site.brand}: Germany</title><meta name="robots" content="noindex" />{domain && <link rel="canonical" href={new URL(destination, domain).href} />}<noscript><meta http-equiv="refresh" content={`0;url=${destination}`} /></noscript></head><body data-destination={destination}><a href={destination}>{site.brand}: Germany</a><script>
+import { attributedUrl } from '../scripts/checkout';
+window.location.replace(attributedUrl(document.body.dataset.destination!, window.location.href));
+</script></body></html>

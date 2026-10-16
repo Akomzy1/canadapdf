@@ -1,0 +1,6 @@
+---
+import { section, line } from '../content/copy';
+import CheckoutButton from './CheckoutButton.astro';
+const copy = section('Final CTA');
+---
+<section class="section final-cta" data-sticky-hide><div class="container"><h2>{line(copy, 'H2')}</h2><CheckoutButton placement="final" label={line(copy, 'CTA')} /><p>{line(copy, 'Under CTA')}</p></div></section>

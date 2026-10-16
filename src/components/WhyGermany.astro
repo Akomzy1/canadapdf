@@ -1,0 +1,7 @@
+---
+import { section, line, rich } from '../content/copy';
+import { site } from '../config/site';
+const copy = section('Section: Why Germany', true);
+const rows = copy.split('\n').filter(row => row.startsWith('|') && !row.startsWith('|---')).map(row => row.split('|').slice(1, -1).map(cell => cell.trim()));
+---
+<section class="section"><div class="container"><h2>{line(copy, 'H2')}</h2><div class="comparison-wrap" tabindex="0" role="region" aria-label="Canada and Germany comparison"><table class="comparison"><thead><tr><td></td><th scope="col">Canada ({site.dates.year}, from Nigeria)</th><th scope="col">Germany ({site.dates.year})</th></tr></thead><tbody>{rows.slice(1).map(row => <tr><th scope="row">{row[0]}</th><td set:html={rich(row[1])} /><td set:html={rich(row[2])} /></tr>)}</tbody></table></div><p class="small">{line(copy, 'Line under table')}</p></div></section>

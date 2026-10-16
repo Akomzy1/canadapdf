@@ -1,0 +1,7 @@
+---
+import { section, line, bullets } from '../content/copy';
+const copy = section("Section: Who it's for");
+---
+<section class="section cream"><div class="container"><h2>{line(copy, 'H2')}</h2><div class="two-grid who-grid">
+{['For you if…', 'Not for you if…'].map((heading, index) => <article class:list={['who-column', { 'not-for': index === 1 }]}><h3>{heading}</h3><ul class="check-list">{bullets(copy.split(`Column "${heading}":`)[1].split('Column ')[0]).map(item => <li><span aria-hidden="true">{index ? '—' : '✓'}</span>{item}</li>)}</ul></article>)}
+</div></div></section>

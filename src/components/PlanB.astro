@@ -1,0 +1,17 @@
+---
+import { section, line, rich, bullets, numbered } from '../content/copy';
+import { site, price } from '../config/site';
+import { germanyFaq } from '../content/faq';
+import BookCover from './BookCover.astro';
+import CheckoutButton from './CheckoutButton.astro';
+import LookInside from './LookInside.astro';
+import TodoBadge from './TodoBadge.astro';
+const copy = section('Section: Plan B (Germany)');
+const offer = section('Offer box', true);
+const inside = section("Section: What's inside", true);
+---
+<section id="germany" class="section plan-b" data-sticky-hide><div class="container"><div class="upsell-grid"><div class="upsell-art"><BookCover book="germany" /><p class="upsell-edition">{site.brand}: Germany · {site.dates.edition}</p></div><div class="upsell-copy"><p class="kicker">{line(copy, 'Kicker')}</p><h2>{line(copy, 'H2')}</h2><p set:html={rich(line(copy, 'Body'))} /><ul class="check-list">{bullets(offer.split('Price line:')[0]).map(item => <li><span aria-hidden="true">✓</span>{item}</li>)}</ul><div id="germany-offer" class="upsell-purchase"><p class="upsell-price">{price('germany')}</p><TodoBadge value={site.prices.germany} /><CheckoutButton product="germany" placement="planb" label={line(section('Hero', true), 'CTA')} /><p class="small">Secure checkout and instant delivery by Selar.</p><p class="small">{site.refundPolicy}</p><p class="small">General information, not legal or immigration advice.</p></div></div></div><div class="upsell-details">
+  <details><summary>{line(inside, 'H2')}<span aria-hidden="true">+</span></summary><ol class="inside-grid">{numbered(inside).map((item, index) => <li><span class="chapter-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.description}</p></div></li>)}</ol><p class="appendices">{line(inside, 'Appendices line')}</p></details>
+  <details><summary>{line(section('Section: Look inside'), 'H2')}<span aria-hidden="true">+</span></summary><LookInside germany compact /></details>
+  <details><summary>{line(section('Section: FAQ'), 'H2')}<span aria-hidden="true">+</span></summary><div class="upsell-faq">{germanyFaq.map(item => <article><h3>{item.question}</h3><p>{item.answer}</p></article>)}</div></details>
+</div></div></section>
